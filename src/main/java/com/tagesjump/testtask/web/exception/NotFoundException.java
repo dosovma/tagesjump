@@ -1,6 +1,5 @@
 package com.tagesjump.testtask.web.exception;
 
-import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -12,7 +11,7 @@ public class NotFoundException extends ResponseStatusException {
         this.message = message;
     }
 
-    public String getAppExMessage() {
+    public String getMessage() {
         return message;
     }
 }
