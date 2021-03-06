@@ -2,7 +2,6 @@ package com.tagesjump.testtask.web;
 
 import com.tagesjump.testtask.model.User;
 import com.tagesjump.testtask.repository.UserRepository;
-import com.tagesjump.testtask.web.exception.BasicInfo;
 import com.tagesjump.testtask.web.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "user", produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 public class UserController {
-
     private final UserRepository userRepository;
 
     @Autowired
@@ -35,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/{id}")
-    public void update(@PathVariable Integer id, @Validated(BasicInfo.class) @RequestBody User user) {
+    public void update(@PathVariable Integer id, @Validated(NameAgeValidationGroup.class) @RequestBody User user) {
         log.info("update user with id = {}", id);
         userRepository.update(id, user);
     }

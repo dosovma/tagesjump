@@ -1,6 +1,6 @@
 package com.tagesjump.testtask.model;
 
-import com.tagesjump.testtask.web.exception.BasicInfo;
+import com.tagesjump.testtask.web.NameAgeValidationGroup;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -9,16 +9,16 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class User {
-    @NotNull
+    @NotNull(message = "ID can't be null")
     private Integer id;
 
     @NotBlank(message = "Token can't be empty")
     private String token;
 
-    @Size(min = 2, message = "Name min length is 2", groups = BasicInfo.class)
+    @Size(min = 2, message = "Name min length is 2", groups = NameAgeValidationGroup.class)
     private String name;
 
-    @Positive(message = "Age must be positive", groups = BasicInfo.class)
+    @Positive(message = "Age must be positive", groups = NameAgeValidationGroup.class)
     private Integer age;
 
     public User(Integer id, String token, String name, Integer age) {
@@ -71,5 +71,15 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, token, name, age);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", token='" + token + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
